@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,13 +8,12 @@
   
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <h1>daftar barang</h1>
   
   <a href="index.html">kembali ke index</a>
-  <script src="main.js"></script>
-</body>
-
+  
   <div class="container">
     <a href="tambah.html" class="button">tambah barang</a>
     <table>
@@ -29,4 +29,13 @@
       <tbody id="tabelData"></tbody>
     </table>
   </div>
+  
+  <script type="module">
+    import { daftarBarang} from './main.js'
+    
+    // eksekusi fungsi menampilkan barang
+    daftarBarang()
+  </script>
+</body>
+
 </html>
