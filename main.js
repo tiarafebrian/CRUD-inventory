@@ -78,7 +78,7 @@ nomorUrut.textContent = tabel.rows.length + 1
   tombolHapus.textContent = 'Hapus'
   tombolHapus.className = 'button delete'
   tombolHapus.onclick = async () => {
-    await hapusbarang(id)
+    await hapusBarang(id)
   }
 
     //tambahkan elemen ke dalam kolom aksi
@@ -131,9 +131,19 @@ export async function tambahBarang(data) {
     await updateDoc(doc(db, "barang", id), {
       namaBarang: barang,
       harga: harga,
-      stok: stok,
+      aktor: stok,
     })
     
     //alihkan ke halaman daftar barang
     window.location.href = 'daftar.html'
   }
+  
+  // fungsi untuk menghapus data barang
+  export async function hapusBarang(id) {
+  if (!confirm("yakin ingin menghapus data ini? ")) return
+  //menghapus dokumen barang berdasarkan id
+  await deleteDoc(doc(db, "barang", id))
+  
+  //refresh data barang
+  await daftarBarang()
+}
