@@ -43,10 +43,14 @@ export async function daftarBarang () {
     // variabel untuk menyimpan data
     const data = doc.data()
     const id = doc.id
-
+    
+    // buat elemen kolom untuk nomor urut
+    
+    
     // buat elemen baris baru
     const baris = document.createElement("tr")
-
+const nomorUrut = document.createElement("td")
+nomorUrut.textContent = tabel.rows.length + 1
     // buat elemen kolom untuk barang
     const kolomBarang = document.createElement("td")
     kolomBarang.textContent = data.barang
@@ -82,6 +86,7 @@ export async function daftarBarang () {
     kolomAksi.appendChild(tombolHapus)
 
     // tambahkan kolom ke dalam baris
+    baris.appendChild(nomorUrut)
     baris.appendChild(kolomBarang)
     baris.appendChild(kolomHarga)
     baris.appendChild(kolomStok)
@@ -107,6 +112,28 @@ export async function tambahBarang(data) {
     stok: stok
   })
   
-  // alihkan ke halaman daftar film
+  // alihkan ke halaman daftar baranh
   window.location.href = 'daftar.html'
 }
+
+  //fungsi untuk mengambil data barang bedasarkan id
+  //agar data ditampilkan di form. ubah
+  export async function ambilBarang(id) {
+    const docRef = doc(db, "barang", id)
+    const docSnap = await getDoc(docRef)
+    
+    return await docSnap.data()
+  }
+  
+    //fungsi untuk mengubah data barang
+  export async function ubahBarang(id, namaBarang, harga, stok) {
+    // mengubah data di firestore
+    await updateDoc(doc(db, "barang", id), {
+      namaBarang: barang,
+      harga: harga,
+      stok: stok,
+    })
+    
+    //alihkan ke halaman daftar barang
+    window.location.href = 'daftar.html'
+  }

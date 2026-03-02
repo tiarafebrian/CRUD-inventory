@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>edit barang</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <body>
+  <div class="container">
+    <h1>form edit barang</h1>
+    
+    <form id="formubah">
+      <label>nama barang</label>
+      <input type="text" id="nama barang">
+      
+      <label>harga</label>
+      <input type="text" id="harga">
+      
+      <label>stok</label>
+      <input type="text" id="stok">
+      
+      <button id="tombolSimpan" type="submit">simpan</button>
+      <br><br>
+      <a href="daftar.Barang">daftar barang</a>
+    </form>
+  </div>
+  
+  <script type="module">
+    import { ambilBarang, ubahBarang} from './main.js'
+    
+    // mengambil id dari url
+const urlparams = new URLSearchParams(window.location.search)
+const idBarang = urlparams.get('id')
+
+// mengambil data barang
+const barang = await ambilBarang(idBarang)
+
+// mengisi form
+document.getElementById('barang').value = film.barang
+document.getElementById('harga').value = film.harga
+document.getElementById('stok').value = film.stok
+
+//menyimpan data barang yang sudah diketik
+const formubah = document.getElementById('formEdit')
+formubah.addEventListener('submit', function(e) {
+  e.preventDefault()
+  
+  const namaBarang = document.getElementById('barang').value
+  const harga = document.getElementById('harga').value
+  const stok = document.getElementById('stok').value
+  
+  ubahdatafilm(idBarang, namaBarang, harga, stok)
+})
+  </script>
+</body>
+</html>
