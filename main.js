@@ -139,11 +139,11 @@ export async function tambahBarang(data) {
   }
   
   // fungsi untuk menghapus data barang
-  export async function hapusBarang(id) {
+ export async function hapusBarang(id) {
   if (!confirm("yakin ingin menghapus data ini? ")) return
-  //menghapus dokumen barang berdasarkan id
+  //menghapus dokumen siswa berdasarkan id
   await deleteDoc(doc(db, "barang", id))
   
-  //refresh data barang
+  //refresh data film
   await daftarBarang()
 }
